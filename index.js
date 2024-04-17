@@ -22,20 +22,13 @@ let images = [
     "images/tom4.png"
 ];
 
-let drums = {
-    "w": "./sounds/crash.mp3",
-    "a": ".sounds/kick-bass.mp3",
-    "s": "./sounds/snare.mp3",
-    "d": "./sounds/tom-1.mp3",
-    "j": "./sounds/tom-2.mp3",
-    "k": "./sounds/tom-3.mp3",
-    "l": "./sounds/tom-4.mp3"
-};
-
 keys = ["w", "a", "s", "d", "j", "k", "l"];
 
 let btns=document.querySelectorAll("button");
-document.addEventListener("DOMContentLoaded", clickInput);
+document.addEventListener("DOMContentLoaded", function () {
+    clickInput();
+    keyboardInput();
+});
 
 for (let i = 0; i < btns.length; i++) {
     let imge = document.createElement("img");
@@ -120,4 +113,12 @@ function addNoise(key)
         default: console.log(key);
     }
 */
+}
+
+function keyboardInput() {
+    document.addEventListener("keydown", function(event) {
+        let pressed = event.key;
+        let index = keys.indexOf(pressed);
+        addNoise(keys[index]);
+    });
 }
